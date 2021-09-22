@@ -5,7 +5,7 @@ on:
     branches:
       - master
   schedule:
-    - cron: "*/5 * * * *" # Every 5 minutes
+    # - cron: "*/5 * * * *"
 
 jobs:
   refresh-feed:
@@ -16,13 +16,13 @@ jobs:
         uses: JamesIves/fetch-api-data-action@releases/v1
         with:
           ENDPOINT: https://potion-api.vercel.app/table?id=fe3fe0e8c9e54061b7412307da4c035f
-          SAVE_LOCATION: public
+          SAVE_LOCATION: data
           BRANCH: master
 
       - name: Update resources
         uses: test-room-7/action-update-file@v1
         with:
-          file-path: public/data.json
+          file-path: data/socials.json
           commit-msg: Updated data.json 
           github-token: ${{ secrets.TOKEN }}
 
